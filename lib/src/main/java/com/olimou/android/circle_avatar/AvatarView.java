@@ -1,4 +1,4 @@
-package com.olimou.android.example;
+package com.olimou.android.circle_avatar;
 
 import android.content.Context;
 import android.content.res.TypedArray;
@@ -16,7 +16,6 @@ import com.facebook.drawee.backends.pipeline.PipelineDraweeControllerBuilder;
 import com.facebook.drawee.controller.ControllerListener;
 import com.facebook.drawee.view.SimpleDraweeView;
 import com.facebook.imagepipeline.image.ImageInfo;
-import com.olimou.android.circle_avatar.R;
 
 /**
  * Created by EmersonMoura on 28/09/16.

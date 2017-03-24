@@ -5,7 +5,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.widget.LinearLayout;
 
 import com.facebook.drawee.backends.pipeline.Fresco;
-import com.olimou.android.example.AvatarView;
+import com.olimou.android.circle_avatar.AvatarView;
 
 import java.util.Locale;
 

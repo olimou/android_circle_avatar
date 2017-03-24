@@ -1,4 +1,4 @@
-package com.olimou.android.example;
+package com.olimou.android.circle_avatar;
 
 import java.util.Locale;
 
