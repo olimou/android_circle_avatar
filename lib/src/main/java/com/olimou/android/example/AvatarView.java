@@ -1,9 +1,10 @@
-package com.olimou.android.circle_avatar;
+package com.olimou.android.example;
 
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.drawable.Animatable;
 import android.os.Build;
+import android.support.annotation.Nullable;
 import android.support.annotation.RequiresApi;
 import android.util.AttributeSet;
 import android.view.View;
@@ -15,6 +16,7 @@ import com.facebook.drawee.backends.pipeline.PipelineDraweeControllerBuilder;
 import com.facebook.drawee.controller.ControllerListener;
 import com.facebook.drawee.view.SimpleDraweeView;
 import com.facebook.imagepipeline.image.ImageInfo;
+import com.olimou.android.circle_avatar.R;
 
 /**
  * Created by EmersonMoura on 28/09/16.
@@ -29,6 +31,8 @@ public class AvatarView extends FrameLayout {
 
 	public AvatarView(Context context) {
 		super(context);
+
+		init(null);
 	}
 
 	public AvatarView(Context context, AttributeSet attrs) {
@@ -54,39 +58,6 @@ public class AvatarView extends FrameLayout {
 		_letter.setName(_name);
 	}
 
-	public String generateLetter(String _name) {
-		if (_name == null) {
-			return "";
-		}
-
-		String lName = "";
-
-		String alphaOnly = _name.replaceAll("[^a-zA-Z ]+", "");
-
-		while (alphaOnly.startsWith(" ")) {
-			alphaOnly = alphaOnly.substring(1);
-		}
-
-		if (alphaOnly.split(" ").length == 1) {
-			String lS = alphaOnly.split(" ")[0];
-
-			if (lS.length() > 1) {
-				lName = lS.substring(0, 2);
-			}
-		} else {
-			String lS = alphaOnly.split(" ")[0];
-			String lS1 = alphaOnly.split(" ")[alphaOnly.split(" ").length - 1];
-
-			if (lS.length() > 0 && lS1.length() > 0) {
-				lName = lS.substring(0, 1) + lS1.substring(0, 1);
-			}
-		}
-
-		lName = lName.toUpperCase();
-
-		return lName;
-	}
-
 	public SimpleDraweeView getCircularImageView() {
 		return mCircularImageView;
 	}
@@ -110,7 +81,7 @@ public class AvatarView extends FrameLayout {
 		return mTextView;
 	}
 
-	public void init(AttributeSet _attrs) {
+	public void init(@Nullable AttributeSet _attrs) {
 		View lView = inflate(getContext(), R.layout.component_avatar_view, this);
 
 		mCircularImageView = (SimpleDraweeView) lView.findViewById(R.id.circular_imageview);
@@ -191,16 +162,16 @@ public class AvatarView extends FrameLayout {
 	}
 
 	public void setColorIndex(int _index) {
-		String lS = String.valueOf(_index);
+		while (_index >= 10) {
+			_index = _index - 10;
+		}
 
-		lS = lS.substring(lS.length() - 1);
-
-		Integer lInteger = Integer.valueOf(lS);
-
-		setBackgroundColor(getColor(lInteger));
+		setBackgroundColor(getColor(_index));
 	}
 
 	public void setName(String _name) {
-		mTextView.setText(generateLetter(_name));
+		GenerateLetters lGenerateLetters = new GenerateLetters();
+
+		mTextView.setText(lGenerateLetters.generate(_name));
 	}
 }

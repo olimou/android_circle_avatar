@@ -1,4 +1,4 @@
-package com.olimou.android.circle_avatar;
+package com.olimou.android.circle_avatar.example;
 
 import org.junit.Test;
 
